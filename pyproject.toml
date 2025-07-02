@@ -19,7 +19,7 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-# (Optional additional Poetry settings)
+package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
