@@ -1,0 +1,1 @@
+“Install pre-commit (pipx install pre-commit) and run pre-commit install”

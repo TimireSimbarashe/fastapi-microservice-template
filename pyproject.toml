@@ -1,0 +1,42 @@
+[project]
+name = "fastapi-microservice-template"
+version = "0.1.0"
+description = "FastAPI microservice template"
+authors = [
+    { name = "Simbarashe Timire" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi==0.115.4",
+    "uvicorn[standard]>=0.35.0,<0.36.0",
+    "pydantic>=2.8",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+# (Optional additional Poetry settings)
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+ruff = "^0.12.1"
+pre-commit = "^4.2.0"
+httpx = "^0.28.1"
+pytest-asyncio = "^1.0.0"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style  = "double"   # or "single" if preferred
+indent-style = "space"    # or "tab"
+line-ending  = "auto"     # "lf", "crlf", "cr" are also valid
