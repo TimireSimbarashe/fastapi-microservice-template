@@ -8,31 +8,25 @@ on:
 jobs:
   build-test:
     runs-on: ubuntu-latest
-
     steps:
-      # 1 Checkout
       - uses: actions/checkout@v4
 
-      # 2 Python 3.12 (with Poetry cache)
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: "poetry"
 
-      # 3 Poetry itself
-      - name: Install Poetry
-        run: pip install --upgrade poetry
+      - uses: snok/install-poetry@v1         # ← drops the CLI on PATH
+        with:
+          version: "1.8.2"                   # pin, or omit for latest
 
-      # 4 Project dependencies (incl. dev extras such as pre-commit)
       - name: Install deps
-        run: |
-          poetry install --no-interaction --no-root
+        run: poetry install --no-interaction --no-ansi
 
-      # 5 Run every pre-commit hook on the full tree
-      - name: Lint / format via pre-commit
+      - name: Lint + format
         run: |
-          poetry run pre-commit run --all-files --show-diff-on-failure
+          poetry run ruff check .
+          poetry run black --check .
 
-      # 6 Unit tests
       - name: Tests
         run: poetry run pytest -q
+
