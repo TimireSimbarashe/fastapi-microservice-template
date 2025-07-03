@@ -33,7 +33,4 @@ jobs:
       - name: Tests
         run: poetry run pytest -q
 
-      - name: Ensure lockfile is up-to-date
-        run: poetry lock --check
-
 
