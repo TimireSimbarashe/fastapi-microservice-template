@@ -1,17 +1,23 @@
 repos:
+  # Ruff
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1          
+    rev: v0.12.1
     hooks:
       - id: ruff
       - id: ruff-format
 
+  # Black
   - repo: https://github.com/psf/black
     rev: 25.1.0
     hooks:
       - id: black
 
-  - repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.19.1
+  # Pytest as a *local* hook (no external repo!)
+  - repo: local
     hooks:
-      - id: blacken-docs
-        additional_dependencies: [black==25.1.0]
+      - id: pytest
+        name: pytest
+        entry: poetry run pytest -q
+        language: system          # use existing Python (fast)
+        pass_filenames: false     # run full test suite
+

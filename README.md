@@ -33,12 +33,12 @@ It ships with testing, linting, CI, and typed Python 3.12—from `git clone` to 
 
 ```bash
 # Clone the template
-git clone https://github.com/your-org/fastapi-microservice-template.git
+git clone https://github.com/TimireSimbarashe/fastapi-microservice-template.git
 cd fastapi-microservice-template
 
 # Spin up container in dev mode (hot-reload)
 docker compose up --build
-# → http://localhost:8000/docs
+
 ```
 
 <details>
