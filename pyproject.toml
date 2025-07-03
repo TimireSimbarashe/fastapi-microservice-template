@@ -2,9 +2,7 @@
 name = "fastapi-microservice-template"
 version = "0.1.0"
 description = "FastAPI microservice template"
-authors = [
-    { name = "Simbarashe Timire" }
-]
+authors = [{ name = "Simbarashe Timire" }]
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.12"
@@ -18,8 +16,9 @@ dependencies = [
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+# ── tell Poetry to install our own code (“root package”) ──────────────
 [tool.poetry]
-package-mode = false
+packages = [{ include = "app" }]      # the folder that holds main.py
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
@@ -29,6 +28,7 @@ httpx = "^0.28.1"
 pytest-asyncio = "^1.0.0"
 black = "25.1.0"
 
+# ── Ruff config ───────────────────────────────────────────────────────
 [tool.ruff]
 line-length = 100
 target-version = "py312"
@@ -38,6 +38,6 @@ select = ["E", "F", "I", "UP", "B"]
 ignore = ["E501"]
 
 [tool.ruff.format]
-quote-style  = "double"   # or "single" if preferred
-indent-style = "space"    # or "tab"
-line-ending  = "auto"     # "lf", "crlf", "cr" are also valid
+quote-style  = "double"
+indent-style = "space"
+line-ending  = "auto"
