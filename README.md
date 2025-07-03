@@ -3,7 +3,7 @@
 A production-ready, **Poetry-managed**, **Docker-packaged** scaffold for building small, maintainable FastAPI services.
 It ships with testing, linting, CI, and typed Python 3.12—from `git clone` to a running container (or a GitHub deploy) in minutes.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/your-org/fastapi-microservice-template/ci.yml?branch=main\&label=CI)](https://github.com/your-org/fastapi-microservice-template/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/TimireSimbarashe/fastapi-microservice-template/ci.yml?branch=main\&label=CI)](https://github.com/your-org/fastapi-microservice-template/actions)
 [![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue)](#licence)
 
 ---
