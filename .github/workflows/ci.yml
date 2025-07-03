@@ -22,8 +22,8 @@ jobs:
       - name: Ensure lockfile is up-to-date
         run: poetry check --lock
 
-      - name: Install deps
-        run: poetry install --no-interaction --no-ansi --no-root
+      - name: Install deps (root package included)
+        run: poetry install --no-interaction --no-ansi
 
       - name: Lint + format
         run: |
