@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main                 # runs only after a dev → main merge
+    paths:
+      - pyproject.toml       # trigger only when version is bumped
+
+jobs:
+  tag-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1 ─ Checkout full history (needed for git-tag)
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2 ─ Install Poetry (same version used locally / in CI)
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: "2.1.3"
+
+      # 3 ─ Extract version from pyproject.toml
+      - name: Read version
+        id: version
+        run: |
+          VER=$(python - <<'PY'
+            import tomllib, pathlib, sys
+            py = tomllib.loads(pathlib.Path("pyproject.toml").read_text())
+            print(py["project"]["version"])
+            PY)
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+
+      # 4 ─ Create annotated git tag (vX.Y.Z) and push
+      - name: Create Git tag
+        run: |
+          git tag -a "v${{ steps.version.outputs.version }}" \
+            -m "Release v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
+
+      # 5 ─ Generate GitHub Release with auto-notes
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true
