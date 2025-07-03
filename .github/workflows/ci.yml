@@ -20,7 +20,7 @@ jobs:
           version: "2.1.3"                   # pin, or omit for latest
 
       - name: Ensure lockfile is up-to-date
-        run: poetry lock --check
+        run: poetry check --lock
 
       - name: Install deps
         run: poetry install --no-interaction --no-ansi --no-root
